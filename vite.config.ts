@@ -5,10 +5,33 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   define: {
-    global: 'window',
+    global: 'globalThis',
+    'process.env': {}
+  },
+  resolve: {
+    alias: {
+      buffer: 'buffer',
+      process: 'process/browser',
+      util: 'util'
+    }
   },
   optimizeDeps: {
     exclude: ['lucide-react'],
+    include: ['buffer', 'process']
+  },
+  build: {
+    outDir: 'dist',
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          router: ['react-router-dom'],
+          motion: ['framer-motion'],
+          icons: ['lucide-react']
+        }
+      }
+    }
   },
   server: {
     proxy: {
