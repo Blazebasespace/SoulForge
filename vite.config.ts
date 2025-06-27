@@ -5,19 +5,10 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   define: {
-    global: 'globalThis',
-    'process.env': {}
-  },
-  resolve: {
-    alias: {
-      buffer: 'buffer',
-      process: 'process/browser',
-      util: 'util'
-    }
+    global: 'globalThis'
   },
   optimizeDeps: {
-    exclude: ['lucide-react'],
-    include: ['buffer', 'process']
+    exclude: ['lucide-react']
   },
   build: {
     outDir: 'dist',
@@ -30,22 +21,6 @@ export default defineConfig({
           motion: ['framer-motion'],
           icons: ['lucide-react']
         }
-      }
-    }
-  },
-  server: {
-    proxy: {
-      '/api': {
-        target: 'https://chatapi.akash.network',
-        changeOrigin: true,
-        secure: true,
-        rewrite: (path) => path.replace(/^\/api/, '/api')
-      },
-      '/pinata-api': {
-        target: 'https://api.pinata.cloud',
-        changeOrigin: true,
-        secure: true,
-        rewrite: (path) => path.replace(/^\/pinata-api/, '')
       }
     }
   }

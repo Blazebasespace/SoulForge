@@ -1,6 +1,3 @@
-import { X402PayService } from './X402PayService';
-import { CDPWalletService } from './CDPWalletService';
-
 interface PaymentRequest {
   amount: number;
   currency: string;
@@ -25,7 +22,7 @@ export class PaymentOrchestrator {
       // Auto-select payment method if not specified
       let method = request.paymentMethod;
       if (method === 'auto') {
-        method = await this.selectOptimalPaymentMethod(request);
+        method = 'x402pay'; // Default to x402pay for simplicity
       }
 
       let result: PaymentResult;
@@ -35,7 +32,7 @@ export class PaymentOrchestrator {
           result = await this.processX402Payment(request);
           break;
         case 'cdp-wallet':
-          result = await this.processCDPPayment(request);
+          result = await this.processMockPayment(request);
           break;
         default:
           throw new Error(`Unsupported payment method: ${method}`);
@@ -54,33 +51,15 @@ export class PaymentOrchestrator {
     }
   }
 
-  private static async selectOptimalPaymentMethod(request: PaymentRequest): Promise<'x402pay' | 'cdp-wallet'> {
-    // Check if CDP wallet is connected
-    const isWalletConnected = CDPWalletService.isConnected();
-    
-    if (isWalletConnected && request.amount >= 0.1) {
-      return 'cdp-wallet';
-    } else {
-      return 'x402pay';
-    }
-  }
-
   private static async processX402Payment(request: PaymentRequest): Promise<PaymentResult> {
     try {
-      const payment = await X402PayService.createPayment({
-        amount: request.amount,
-        currency: request.currency,
-        description: request.description,
-        metadata: request.metadata
-      });
-
       // Simulate payment processing
       await new Promise(resolve => setTimeout(resolve, 2000));
       const success = Math.random() > 0.1; // 90% success rate for demo
 
       return {
         success,
-        paymentId: payment.paymentId,
+        paymentId: `x402_${Date.now()}`,
         method: 'x402pay',
         amount: request.amount,
         currency: request.currency,
@@ -99,24 +78,11 @@ export class PaymentOrchestrator {
     }
   }
 
-  private static async processCDPPayment(request: PaymentRequest): Promise<PaymentResult> {
+  private static async processMockPayment(request: PaymentRequest): Promise<PaymentResult> {
     try {
-      // Ensure wallet is connected
-      const connected = await CDPWalletService.connectWallet();
-      if (!connected) {
-        throw new Error('Wallet not connected');
-      }
-
-      // For incoming payments, just record the expectation
-      const walletAddress = await CDPWalletService.receivePayment(
-        request.amount,
-        request.currency === 'USD' ? 'ETH' : request.currency,
-        request.description
-      );
-
       // Simulate payment completion
       await new Promise(resolve => setTimeout(resolve, 3000));
-      const paymentId = `cdp_${Date.now()}`;
+      const paymentId = `mock_${Date.now()}`;
       
       return {
         success: true,
@@ -128,7 +94,7 @@ export class PaymentOrchestrator {
         timestamp: new Date()
       };
     } catch (error) {
-      console.error('CDP wallet payment failed:', error);
+      console.error('Mock payment failed:', error);
       return {
         success: false,
         paymentId: 'failed',
@@ -199,30 +165,20 @@ export class PaymentOrchestrator {
     totalRevenue: { [asset: string]: number };
     isConnected: boolean;
   }> {
-    try {
-      const isConnected = CDPWalletService.isConnected();
-      const address = await CDPWalletService.getWalletAddress();
-      const balances = await CDPWalletService.getBalance();
-      const totalRevenue = CDPWalletService.getTotalRevenue();
-
-      return {
-        address,
-        balances,
-        totalRevenue,
-        isConnected
-      };
-    } catch (error) {
-      console.error('Failed to get wallet status:', error);
-      return {
-        address: 'Not available',
-        balances: [],
-        totalRevenue: {},
-        isConnected: false
-      };
-    }
+    return {
+      address: '0x742d35Cc6634C0532925a3b8D4C9db96590e4CAF',
+      balances: [
+        { asset: 'ETH', amount: 0.1, usdValue: 250 },
+        { asset: 'USDC', amount: 100, usdValue: 100 }
+      ],
+      totalRevenue: { ETH: 0.05, USDC: 50 },
+      isConnected: true
+    };
   }
 
   static async connectWallet(): Promise<boolean> {
-    return await CDPWalletService.connectWallet();
+    // Simulate wallet connection
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    return true;
   }
 }

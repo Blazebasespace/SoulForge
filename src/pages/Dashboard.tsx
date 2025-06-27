@@ -252,7 +252,7 @@ const Dashboard = () => {
               <div className="p-6 backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl">
                 <div className="flex items-center space-x-3 mb-4">
                   <Wallet className="w-6 h-6 text-blue-400" />
-                  <h3 className="text-lg font-semibold text-white">CDP Wallet</h3>
+                  <h3 className="text-lg font-semibold text-white">Wallet</h3>
                   <span className={`px-2 py-1 rounded-full text-xs ${
                     walletStatus.isConnected 
                       ? 'bg-green-500/20 text-green-300' 
@@ -381,16 +381,18 @@ const Dashboard = () => {
             </motion.div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {userAgents.map((agent, index) => (
-                <motion.div
-                  key={agent.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <AgentCard agent={agent} />
-                </motion.div>
-              ))}
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {userAgents.map((agent, index) => (
+                  <motion.div
+                    key={agent.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    <AgentCard agent={agent} />
+                  </motion.div>
+                ))}
+              </div>
             </div>
           )}
         </div>
