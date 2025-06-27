@@ -4,15 +4,6 @@
 
 SoulForge is a cutting-edge platform that allows users to create custom AI agents, generate full-stack applications, and process real payments using Web3 technology. Built with React, TypeScript, and integrated with Coinbase CDP Wallet and x402pay for seamless cryptocurrency transactions.
 
-![SoulForge Platform](https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1200&h=400&fit=crop)
-
-## 🏆 Award Categories
-
-### 🤖 Best Agentic Use of Pinata
-SoulForge creates **persistent AI agents as autonomous digital entities** stored permanently on IPFS via Pinata. Each agent exists independently with complete personality, memory, and behavior data, enabling true digital permanence and ownership.
-
-### ⚡ Akash Network Integration
-Leverages **Akash's decentralized AI inference** for chat responses, ensuring censorship-resistant AI interactions running on distributed infrastructure.
 
 ## ✨ Key Features
 
@@ -128,83 +119,7 @@ Leverages **Akash's decentralized AI inference** for chat responses, ensuring ce
 - npm or yarn
 - Web3 wallet (MetaMask recommended)
 
-### Installation
 
-1. **Clone the repository**
-```bash
-git clone https://github.com/your-username/soulforge.git
-cd soulforge
-```
-
-2. **Install dependencies**
-```bash
-npm install
-```
-
-3. **Set up environment variables**
-Create a `.env` file in the root directory:
-```env
-# Coinbase CDP Wallet (for real payments)
-VITE_COINBASE_API_KEY=your_coinbase_api_key
-VITE_COINBASE_API_SECRET=your_coinbase_api_secret
-
-# Akash Chat API (for AI responses)
-VITE_AKASH_CHAT_API_KEY=your_akash_api_key
-
-# Pinata IPFS (for decentralized storage)
-VITE_PINATA_JWT=your_pinata_jwt
-VITE_PINATA_API_KEY=your_pinata_api_key
-VITE_PINATA_API_SECRET=your_pinata_api_secret
-
-# x402pay (for micropayments)
-VITE_X402PAY_ENDPOINT=https://api.x402pay.com
-VITE_X402PAY_WALLET_ADDRESS=your_x402pay_wallet
-
-# Reown Project ID (for wallet connection)
-VITE_REOWN_PROJECT_ID=46625ade6623c9cb3c15ba6d0e1736fd
-```
-
-4. **Start the development server**
-```bash
-npm run dev
-```
-
-5. **Open your browser**
-Navigate to `http://localhost:5173`
-
-## 🔧 Configuration
-
-### Coinbase CDP Wallet Setup
-
-1. **Create a Coinbase Developer Account**
-   - Visit [Coinbase Developer Platform](https://portal.cdp.coinbase.com/)
-   - Create a new project
-   - Generate API keys
-
-2. **Configure API Keys**
-   ```env
-   VITE_COINBASE_API_KEY=your_api_key_name
-   VITE_COINBASE_API_SECRET=your_private_key
-   ```
-
-3. **Network Configuration**
-   - Default: Base Sepolia (testnet)
-   - Production: Base Mainnet
-   - Supports: Ethereum, Polygon, Arbitrum
-
-### Reown Wallet Connect
-
-The platform uses Reown (formerly WalletConnect) for wallet connections:
-- Project ID: `46625ade6623c9cb3c15ba6d0e1736fd`
-- Supports all major Web3 wallets
-- Multi-chain compatibility
-
-### IPFS Storage
-
-Configure Pinata for decentralized storage:
-1. Create account at [Pinata](https://pinata.cloud/)
-2. Generate JWT token
-3. Add to environment variables
 
 ## 📱 Usage
 
@@ -305,16 +220,10 @@ Configure Pinata for decentralized storage:
 
 ## 🌐 Supported Networks
 
-### Mainnet
-- **Base**: Primary network for production
-- **Ethereum**: L1 support for maximum compatibility
-- **Polygon**: Low-cost transactions
-- **Arbitrum**: Fast L2 scaling
 
 ### Testnet
 - **Base Sepolia**: Primary development network
-- **Ethereum Sepolia**: L1 testing
-- **Polygon Mumbai**: Testnet transactions
+
 
 ## 💡 Use Cases
 
@@ -336,93 +245,3 @@ Configure Pinata for decentralized storage:
 - **Decentralized Storage**: Implement IPFS in applications
 - **Revenue Models**: Build sustainable creator economies
 
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
-
-### Development Setup
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
-
-### Code Standards
-- TypeScript for type safety
-- ESLint for code quality
-- Prettier for formatting
-- Conventional commits
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🆘 Support
-
-### Documentation
-- [API Reference](docs/api.md)
-- [Agent Creation Guide](docs/agents.md)
-- [Payment Integration](docs/payments.md)
-- [Deployment Guide](docs/deployment.md)
-
-### Community
-- [Discord Server](https://discord.gg/soulforge)
-- [GitHub Discussions](https://github.com/soulforge/discussions)
-- [Twitter](https://twitter.com/soulforge_ai)
-
-### Issues
-- [Bug Reports](https://github.com/soulforge/issues/new?template=bug_report.md)
-- [Feature Requests](https://github.com/soulforge/issues/new?template=feature_request.md)
-
-## 🚀 Roadmap
-
-### Q1 2024
-- [ ] Mobile app development
-- [ ] Advanced agent personalities
-- [ ] Multi-language support
-- [ ] Enhanced payment options
-
-### Q2 2024
-- [ ] Agent marketplace improvements
-- [ ] Advanced analytics dashboard
-- [ ] Team collaboration features
-- [ ] Enterprise solutions
-
-### Q3 2024
-- [ ] Cross-chain compatibility
-- [ ] Advanced AI models
-- [ ] Plugin ecosystem
-- [ ] White-label solutions
-
-## 🙏 Acknowledgments
-
-- **Coinbase**: For the excellent CDP Wallet SDK
-- **Reown**: For seamless wallet connection
-- **Akash Network**: For decentralized AI inference
-- **Pinata**: For reliable IPFS infrastructure
-- **x402pay**: For innovative micropayment solutions
-
----
-
-**Built with ❤️ by the SoulForge team**
-
-*Empowering creators to build the future of AI interaction*
-
-## 📊 Project Stats
-
-- **Lines of Code**: 15,000+
-- **Components**: 25+ React components
-- **Services**: 10+ integrated services
-- **Networks**: 4+ blockchain networks
-- **File Types**: TypeScript, React, CSS, JSON
-
-## 🎖️ Awards & Recognition
-
-- **Best Agentic Use of Pinata**: Revolutionary persistent AI agents
-- **Akash Network Integration**: Decentralized AI infrastructure
-- **Innovation Award**: First platform for permanent AI relationships
-- **Technical Excellence**: Production-ready Web3 application
-
----
-
-*SoulForge - Where AI souls live forever* 🧠✨
